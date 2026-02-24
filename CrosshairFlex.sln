@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{35A3D24D-C561-4EE5-95F8-ACA307441EA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrosshairFlex.Desktop", "src\CrosshairFlex.Desktop\CrosshairFlex.Desktop.csproj", "{C5DBC035-091E-4662-8530-EBA13FD3EFA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5DBC035-091E-4662-8530-EBA13FD3EFA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5DBC035-091E-4662-8530-EBA13FD3EFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5DBC035-091E-4662-8530-EBA13FD3EFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5DBC035-091E-4662-8530-EBA13FD3EFA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C5DBC035-091E-4662-8530-EBA13FD3EFA2} = {35A3D24D-C561-4EE5-95F8-ACA307441EA2}
+	EndGlobalSection
+EndGlobal

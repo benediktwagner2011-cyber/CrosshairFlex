@@ -1,0 +1,26 @@
+<Window x:Class="CrosshairFlex.Desktop.OnboardingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Welcome to CrosshairFlex"
+        Width="640"
+        Height="420"
+        WindowStartupLocation="CenterOwner"
+        Background="#0A1220"
+        Foreground="#E6EDF7">
+    <Border Margin="20" Padding="20" Background="#101A2B" CornerRadius="16" BorderBrush="#25384F" BorderThickness="1">
+        <DockPanel>
+            <Button x:Name="StartButton" DockPanel.Dock="Bottom" Content="Start Using CrosshairFlex" Height="36" Margin="0,16,0,0" Click="Close_OnClick" />
+            <StackPanel>
+                <TextBlock x:Name="HeadingText" Text="CrosshairFlex" FontSize="28" FontWeight="SemiBold" Margin="0,0,0,10" />
+                <TextBlock x:Name="IntroText" TextWrapping="Wrap" Margin="0,0,0,12">
+                    CrosshairFlex adds a pure, transparent desktop overlay crosshair without injecting into games.
+                </TextBlock>
+                <TextBlock x:Name="QuickSetupTitleText" Text="Quick setup:" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8" />
+                <TextBlock x:Name="Step1Text" Text="1) Build a profile in Add/Edit and save it only when ready." Margin="0,0,0,6" />
+                <TextBlock x:Name="Step2Text" Text="2) Switch Home view between vertical and horizontal profile cards." Margin="0,0,0,6" />
+                <TextBlock x:Name="Step3Text" Text="3) Assign keybinds and use Share to export/import profile links." Margin="0,0,0,6" />
+                <TextBlock x:Name="Step4Text" Text="4) Configure overlay behavior, theme, language, and startup options." Margin="0,0,0,6" />
+            </StackPanel>
+        </DockPanel>
+    </Border>
+</Window>

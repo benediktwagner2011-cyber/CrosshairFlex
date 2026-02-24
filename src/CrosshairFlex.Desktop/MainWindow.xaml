@@ -1,0 +1,522 @@
+<Window x:Class="CrosshairFlex.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:models="clr-namespace:CrosshairFlex.Desktop.Models"
+        Title="CrosshairFlex"
+        Width="1240"
+        Height="800"
+        MinWidth="980"
+        MinHeight="680"
+        WindowStartupLocation="CenterScreen"
+        Background="#0A1220"
+        Foreground="#E6EDF7">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="Margin" Value="0,0,10,10" />
+            <Setter Property="Background" Value="#22C7AE" />
+            <Setter Property="Foreground" Value="#04201C" />
+            <Setter Property="BorderBrush" Value="#69DDCC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style x:Key="NavButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Width" Value="58" />
+            <Setter Property="Height" Value="58" />
+            <Setter Property="Background" Value="#131E31" />
+            <Setter Property="Foreground" Value="#9FB2CC" />
+            <Setter Property="BorderBrush" Value="#2D3F5A" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="NavButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="12"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </Border.RenderTransform>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="NavButtonBorder"
+                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                                                         To="1.06"
+                                                         Duration="0:0:0.16" />
+                                        <DoubleAnimation Storyboard.TargetName="NavButtonBorder"
+                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                                                         To="1.06"
+                                                         Duration="0:0:0.16" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="NavButtonBorder"
+                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                                                         To="1"
+                                                         Duration="0:0:0.16" />
+                                        <DoubleAnimation Storyboard.TargetName="NavButtonBorder"
+                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                                                         To="1"
+                                                         Duration="0:0:0.16" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ProfileNavButtonStyle" TargetType="Button" BasedOn="{StaticResource NavButtonStyle}">
+            <Setter Property="Background" Value="#1A2740" />
+            <Setter Property="BorderBrush" Value="#3C5C86" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+        <Style x:Key="PanelBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="#101A2B" />
+            <Setter Property="BorderBrush" Value="#25384F" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="18" />
+            <Setter Property="Padding" Value="18" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <RadialGradientBrush Center="0.15,0" RadiusX="1.1" RadiusY="0.9">
+                <GradientStop Color="#1A2943" Offset="0" />
+                <GradientStop Color="#0A1220" Offset="0.62" />
+            </RadialGradientBrush>
+        </Grid.Background>
+
+        <Grid Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="88" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="NavPanelBorder" Grid.Column="0" Style="{StaticResource PanelBorderStyle}" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0">
+                        <Button x:Name="HomeNavButton" Style="{StaticResource NavButtonStyle}" Click="ShowHome_Click" ToolTip="Home">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE80F;" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Button>
+                        <Button x:Name="AddNavButton" Style="{StaticResource NavButtonStyle}" Click="ShowAdd_Click" ToolTip="Add">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Button>
+                        <Button x:Name="KeybindNavButton" Style="{StaticResource NavButtonStyle}" Click="ShowKeybinds_Click" ToolTip="Keybinds">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE765;" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Button>
+                        <Button x:Name="ShareNavButton" Style="{StaticResource NavButtonStyle}" Click="ShowShare_Click" ToolTip="Share">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72D;" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Button>
+                    </StackPanel>
+
+                    <Border Grid.Row="2" BorderBrush="#2E405E" BorderThickness="0,1,0,0" Padding="0,8,0,0">
+                        <StackPanel>
+                            <Button x:Name="ProfileNavButton" Style="{StaticResource ProfileNavButtonStyle}" Click="ShowProfile_Click" ToolTip="Profile">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="2">
+                <Border x:Name="HomePanel" Style="{StaticResource PanelBorderStyle}">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,12">
+                            <Grid Margin="0,0,0,6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock x:Name="HomeTitleText" Text="HOME" FontSize="28" FontWeight="Bold" />
+                                    <TextBlock x:Name="HomeSubtitleText" Text="Select your active crosshair profile." />
+                                </StackPanel>
+                                <Button x:Name="HomeViewModeButton" Grid.Column="1" Width="150" Height="34" Content="Profile View" Click="HomeViewMode_OnClick" Margin="12,0,0,0" />
+                            </Grid>
+                        </StackPanel>
+
+                        <ListBox x:Name="HomeProfilesListBox" SelectionChanged="HomeProfilesListBox_SelectionChanged" Background="#0E1523" BorderBrush="#2B3B57" Foreground="#EAF2FF">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="0,0,0,10" Padding="12" Background="#111B2B" CornerRadius="12" BorderBrush="#2B3C57" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="64" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="120" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Width="44" Height="44" HorizontalAlignment="Center" VerticalAlignment="Center" ClipToBounds="True">
+                                                <Ellipse Stroke="#2DE6BC" StrokeThickness="1" Fill="#0A121D" />
+
+                                                <Canvas Width="44" Height="44">
+                                                    <Canvas.Style>
+                                                        <Style TargetType="Canvas">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.Plus}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Canvas.Style>
+                                                    <Rectangle Width="18" Height="2" Fill="#2DE6BC" Canvas.Left="13" Canvas.Top="21" />
+                                                    <Rectangle Width="2" Height="18" Fill="#2DE6BC" Canvas.Left="21" Canvas.Top="13" />
+                                                </Canvas>
+
+                                                <Ellipse Width="8" Height="8" Fill="#2DE6BC" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Ellipse.Style>
+                                                        <Style TargetType="Ellipse">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.Dot}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Ellipse.Style>
+                                                </Ellipse>
+
+                                                <Ellipse Width="20" Height="20" Stroke="#2DE6BC" StrokeThickness="2" Fill="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Ellipse.Style>
+                                                        <Style TargetType="Ellipse">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.Circle}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Ellipse.Style>
+                                                </Ellipse>
+
+                                                <Rectangle Width="18" Height="18" Stroke="#2DE6BC" StrokeThickness="2" RadiusX="3" RadiusY="3" Fill="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Rectangle.Style>
+                                                        <Style TargetType="Rectangle">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.Pump}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Rectangle.Style>
+                                                </Rectangle>
+
+                                                <Image Width="22" Height="22" Stretch="Uniform" Source="{Binding CustomPngPath}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Image.Style>
+                                                        <Style TargetType="Image">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.CustomPng}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Image.Style>
+                                                </Image>
+                                            </Grid>
+                                            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="SemiBold" />
+                                                <TextBlock Text="{Binding Shape}" FontSize="12" />
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding ProfileHotkey}" HorizontalAlignment="Right" Foreground="#71E8C8" />
+                                                <StackPanel Orientation="Horizontal" Margin="0,6,0,0" HorizontalAlignment="Right">
+                                                    <Button Width="30" Height="26" Padding="0" Margin="0,0,4,0" Click="EditProfileFromHome_Click" Tag="{Binding Id}" ToolTip="Edit profile">
+                                                        <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" />
+                                                    </Button>
+                                                    <Button Width="30" Height="26" Padding="0" Click="DeleteProfileFromHome_Click" Tag="{Binding Id}" ToolTip="Delete profile">
+                                                        <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" />
+                                                    </Button>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <ListBox x:Name="HomeProfilesHorizontalListBox" SelectionChanged="HomeProfilesListBox_SelectionChanged" Background="#0E1523" BorderBrush="#2B3B57" Foreground="#EAF2FF" Visibility="Collapsed">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Width="170" Margin="0,0,10,10" Padding="10" Background="#111B2B" CornerRadius="12" BorderBrush="#2B3C57" BorderThickness="1">
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <Grid Width="62" Height="62" HorizontalAlignment="Center" VerticalAlignment="Center" ClipToBounds="True" Margin="0,0,0,8">
+                                                <Ellipse Stroke="#2DE6BC" StrokeThickness="1" Fill="#0A121D" />
+
+                                                <Canvas Width="62" Height="62">
+                                                    <Canvas.Style>
+                                                        <Style TargetType="Canvas">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.Plus}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Canvas.Style>
+                                                    <Rectangle Width="24" Height="2" Fill="#2DE6BC" Canvas.Left="19" Canvas.Top="30" />
+                                                    <Rectangle Width="2" Height="24" Fill="#2DE6BC" Canvas.Left="30" Canvas.Top="19" />
+                                                </Canvas>
+
+                                                <Ellipse Width="10" Height="10" Fill="#2DE6BC" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Ellipse.Style>
+                                                        <Style TargetType="Ellipse">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.Dot}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Ellipse.Style>
+                                                </Ellipse>
+
+                                                <Ellipse Width="26" Height="26" Stroke="#2DE6BC" StrokeThickness="2" Fill="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Ellipse.Style>
+                                                        <Style TargetType="Ellipse">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.Circle}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Ellipse.Style>
+                                                </Ellipse>
+
+                                                <Rectangle Width="24" Height="24" Stroke="#2DE6BC" StrokeThickness="2" RadiusX="3" RadiusY="3" Fill="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Rectangle.Style>
+                                                        <Style TargetType="Rectangle">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.Pump}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Rectangle.Style>
+                                                </Rectangle>
+
+                                                <Image Width="30" Height="30" Stretch="Uniform" Source="{Binding CustomPngPath}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Image.Style>
+                                                        <Style TargetType="Image">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Shape}" Value="{x:Static models:CrosshairShape.CustomPng}">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Image.Style>
+                                                </Image>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" HorizontalAlignment="Center" TextAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
+                                                <Button Width="70" Height="28" Padding="0" Click="EditProfileFromHome_Click" Tag="{Binding Id}" ToolTip="Edit profile">
+                                                    <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" />
+                                                </Button>
+                                                <Button Width="30" Height="28" Padding="0" Margin="6,0,0,0" Click="DeleteProfileFromHome_Click" Tag="{Binding Id}" ToolTip="Delete profile">
+                                                    <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" />
+                                                </Button>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </DockPanel>
+                </Border>
+
+                <Border x:Name="AddPanel" Style="{StaticResource PanelBorderStyle}" Visibility="Collapsed">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock x:Name="AddEditTitleText" Text="ADD / EDIT" FontSize="28" FontWeight="Bold" Margin="0,0,0,10" />
+
+                            <TextBlock x:Name="AddProfileNameLabel" Text="Profile Name" />
+                            <TextBox x:Name="AddProfileNameTextBox" Height="34" Margin="0,4,0,10" Background="#0F1725" BorderBrush="#2B3B57" Foreground="#EAF2FF" />
+
+                            <TextBlock x:Name="AddShapeLabel" Text="Shape" />
+                            <ComboBox x:Name="AddShapeComboBox" SelectionChanged="AddEditor_OnChanged" Margin="0,4,0,10">
+                                <ComboBoxItem Content="Plus" />
+                                <ComboBoxItem Content="Dot" />
+                                <ComboBoxItem Content="Circle" />
+                                <ComboBoxItem Content="Pump" />
+                                <ComboBoxItem Content="CustomPng" />
+                            </ComboBox>
+
+                            <TextBlock x:Name="AddSizeLabel" Text="Size" />
+                            <Slider x:Name="AddSizeSlider" Minimum="0" Maximum="230" ValueChanged="AddEditor_OnChanged" />
+
+                            <TextBlock x:Name="AddThicknessLabel" Text="Thickness" Margin="0,10,0,0" />
+                            <Slider x:Name="AddThicknessSlider" Minimum="0" Maximum="40" ValueChanged="AddEditor_OnChanged" />
+
+                            <TextBlock x:Name="AddGapLabel" Text="Gap" Margin="0,10,0,0" />
+                            <Slider x:Name="AddGapSlider" Minimum="0" Maximum="120" ValueChanged="AddEditor_OnChanged" />
+
+                            <TextBlock x:Name="AddPumpRoundLabel" Text="Pump Corner Rounding" Margin="0,10,0,0" />
+                            <Slider x:Name="AddPumpRoundSlider" Minimum="0" Maximum="60" ValueChanged="AddEditor_OnChanged" />
+
+                            <TextBlock x:Name="AddOpacityLabel" Text="Opacity" Margin="0,10,0,0" />
+                            <Slider x:Name="AddOpacitySlider" Minimum="0.0" Maximum="1.0" ValueChanged="AddEditor_OnChanged" />
+
+                            <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                                <Button x:Name="PickColorButton" Content="Pick Color" Width="120" Click="PickColor_OnClick" />
+                                <Border x:Name="AddColorPreviewBorder" Width="32" Height="32" Margin="0,0,10,10" CornerRadius="6" BorderBrush="#4B5E7A" BorderThickness="1" />
+                                <TextBlock x:Name="AddColorText" VerticalAlignment="Center" Foreground="#96A9C8" />
+                            </StackPanel>
+
+                            <TextBlock x:Name="AddCustomPngLabel" Text="Custom PNG" />
+                            <DockPanel Margin="0,4,0,8">
+                                <TextBox x:Name="AddCustomPngTextBox" Height="34" Margin="0,0,8,0" Background="#0F1725" BorderBrush="#2B3B57" Foreground="#EAF2FF" TextChanged="AddEditor_OnChanged" />
+                                <Button x:Name="BrowsePngButton" Content="Browse" Width="90" Click="BrowsePng_OnClick" />
+                            </DockPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                                <Button x:Name="AddResetButton" Content="Reset Form" Width="130" Click="CreateProfile_OnClick" />
+                                <Button x:Name="AddSaveButton" Content="Save Changes" Width="130" Click="SaveProfile_OnClick" />
+                                <Button x:Name="AddDeleteButton" Content="Delete Profile" Width="130" Click="DeleteProfile_OnClick" />
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+
+                <Border x:Name="KeybindsPanel" Style="{StaticResource PanelBorderStyle}" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="300" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel>
+                            <TextBlock x:Name="KeybindsTitleText" Text="KEYBINDS" FontSize="28" FontWeight="Bold" />
+                            <TextBlock x:Name="SafeModeInfoText" Foreground="#F7B07A" Margin="0,4,0,10" TextWrapping="Wrap" />
+                            <ListBox x:Name="KeybindProfilesListBox" SelectionChanged="KeybindProfilesListBox_SelectionChanged" DisplayMemberPath="Name" Background="#0E1523" BorderBrush="#2B3B57" Foreground="#EAF2FF" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="18,0,0,0">
+                            <TextBlock x:Name="SelectedProfileLabelText" Text="Selected Profile" />
+                            <TextBlock x:Name="SelectedProfileNameText" FontWeight="SemiBold" Margin="0,4,0,2" />
+                            <TextBlock x:Name="SelectedProfileKeybindsText" Foreground="#9AAFD0" TextWrapping="Wrap" Margin="0,0,0,10" />
+                            <TextBlock x:Name="AssignedKeyLabelText" Text="Assigned Keys" />
+                            <StackPanel x:Name="KeybindRowsPanel" Margin="0,6,0,10" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="ApplyKeyButton" Content="Apply Key" Width="120" Click="SaveKeybind_OnClick" />
+                                <Button x:Name="AddKeyButton" Content="+" Width="34" Margin="0,0,10,10" Click="AddKeybind_OnClick" ToolTip="Add additional hotkey" />
+                            </StackPanel>
+                            <TextBlock x:Name="KeybindStatusText" Margin="0,8,0,0" Foreground="#9AAFD0" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="SharePanel" Style="{StaticResource PanelBorderStyle}" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock x:Name="ShareTitleText" Text="SHARE" FontSize="28" FontWeight="Bold" />
+                        <TextBlock x:Name="ShareSubtitleText" Text="Share your profiles and setup with your team." Margin="0,4,0,14" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="ShareImportCard" Grid.Column="0" Background="#0F1725" BorderBrush="#2B3B57" BorderThickness="1" CornerRadius="10" Padding="12">
+                                <StackPanel>
+                                    <TextBlock x:Name="ShareImportTitleText" Text="Paste / Import" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="ShareImportDescText" Text="Paste a shared code to import a profile." Margin="0,8,0,10" TextWrapping="Wrap" />
+                                    <TextBox x:Name="ShareCodeTextBox" Height="34" Margin="0,0,0,10" Background="#0F1725" BorderBrush="#2B3B57" Foreground="#EAF2FF" />
+                                    <Button x:Name="ShareImportButton" Content="Import Package" Width="130" Click="ImportShareCode_OnClick" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border x:Name="ShareCopyCard" Grid.Column="2" Background="#0F1725" BorderBrush="#2B3B57" BorderThickness="1" CornerRadius="10" Padding="12">
+                                <StackPanel>
+                                    <TextBlock x:Name="ShareCopyTitleText" Text="Copy / Export" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="ShareCopyDescText" Text="Create a share link for the selected crosshair." Margin="0,8,0,10" TextWrapping="Wrap" />
+                                    <TextBlock x:Name="ShareSelectLabelText" Text="Select Crosshair" />
+                                    <ComboBox x:Name="ShareProfileComboBox" Margin="0,4,0,10" DisplayMemberPath="Name" />
+                                    <Button x:Name="ShareCopyButton" Content="Copy Share Link" Width="130" Click="CopyShareCode_OnClick" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                        <TextBlock x:Name="ShareStatusText" Margin="0,10,0,0" Foreground="#9AAFD0" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <Border x:Name="ProfilePanel" Style="{StaticResource PanelBorderStyle}" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock x:Name="ProfileTitleText" Text="PROFILE" FontSize="28" FontWeight="Bold" />
+
+                        <Grid Margin="0,12,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="ProfileGeneralCard" Grid.Column="0" Background="#0F1725" BorderBrush="#2B3B57" BorderThickness="1" CornerRadius="10" Padding="12">
+                                <StackPanel>
+                                    <TextBlock x:Name="GeneralTitleText" Text="General" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="LanguageLabelText" Text="Language" Margin="0,10,0,4" />
+                                    <ComboBox x:Name="LanguageComboBox" SelectionChanged="LanguageComboBox_SelectionChanged" Width="200">
+                                        <ComboBoxItem Content="English" Tag="en" />
+                                        <ComboBoxItem Content="Deutsch" Tag="de" />
+                                    </ComboBox>
+                                    <CheckBox x:Name="ThemeToggleCheckBox" Content="Light Mode" Margin="0,10,0,0" Checked="ThemeToggleCheckBox_OnChanged" Unchecked="ThemeToggleCheckBox_OnChanged" />
+                                    <CheckBox x:Name="StartWithWindowsCheckBox" Content="Start with Windows" Margin="0,8,0,0" Checked="BehaviorChanged_OnChanged" Unchecked="BehaviorChanged_OnChanged" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border x:Name="ProfileOverlayCard" Grid.Column="2" Background="#0F1725" BorderBrush="#2B3B57" BorderThickness="1" CornerRadius="10" Padding="12">
+                                <StackPanel>
+                                    <TextBlock x:Name="OverlayBehaviorTitleText" Text="Overlay Behavior" FontWeight="SemiBold" />
+                                    <CheckBox x:Name="TempOnRightMouseCheckBox" Content="Temporary crosshair on Right Mouse hold" Margin="0,8,0,0" Checked="BehaviorChanged_OnChanged" Unchecked="BehaviorChanged_OnChanged" />
+                                    <CheckBox x:Name="TempOnLeftMouseCheckBox" Content="Temporary crosshair on Left Mouse hold" Margin="0,8,0,0" Checked="BehaviorChanged_OnChanged" Unchecked="BehaviorChanged_OnChanged" />
+                                    <CheckBox x:Name="SafeModeCheckBox" Content="Safe Mode (modifier-based switching only)" Margin="0,8,0,0" Checked="SafeModeCheckBox_OnChanged" Unchecked="SafeModeCheckBox_OnChanged" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <TextBlock x:Name="AntiCheatWarningText" Margin="0,8,0,0" Foreground="#F7B07A" TextWrapping="Wrap" />
+
+                        <WrapPanel Margin="0,16,0,0">
+                            <Button x:Name="SaveSettingsButton" Content="Save Settings" Width="130" Click="SaveSettings_OnClick" />
+                            <Button x:Name="ToggleOverlayButton" Content="Toggle Overlay" Width="120" Click="ToggleOverlay_OnClick" />
+                            <Button x:Name="ResetSettingsButton" Content="Reset Settings" Width="120" Click="ResetSettings_OnClick" />
+                            <Button x:Name="OpenOnboardingButton" Content="Open Onboarding" Width="130" Click="OpenOnboarding_OnClick" />
+                        </WrapPanel>
+                        <TextBlock x:Name="SettingsStatusText" Foreground="#9AAFD0" />
+
+                        <TextBlock x:Name="VersionText" Margin="0,20,0,0" Foreground="#9AAFD0" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
