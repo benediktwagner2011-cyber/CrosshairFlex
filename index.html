@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="CrosshairFlex - lightweight Windows overlay crosshair app with profile sharing, keybind switching, and flexible home layouts.">
+<title>CrosshairFlex</title>
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preload" href="assets/logo.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bg"></div>
+<div class="container lang-switch" aria-label="Language switcher">
+  <span id="brand-mini" class="brand-mini">CrosshairFlex</span>
+  <div class="lang-controls">
+    <button type="button" class="lang-btn" data-lang="de">DE</button>
+    <span>/</span>
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
+  </div>
+</div>
+<header class="hero container">
+  <img class="logo" src="assets/logo.svg" alt="CrosshairFlex logo" width="96" height="96">
+  <div class="hero-copy">
+    <h1 id="hero-title">CrosshairFlex</h1>
+    <p id="home-sub" class="sub">Lightweight crosshair overlay for Windows with profile sharing, keybind switching, vertical/horizontal home views, and passive input handling.</p>
+    <a id="home-download" class="download" href="download.html">Download for Windows</a>
+    <p id="home-meta" class="meta">Version <span id="version">1.0.0</span> &bull; <span id="size">9.6 MB</span></p>
+  </div>
+  <div class="preview" aria-label="Animated overlay preview">
+    <div class="ring"></div><div class="ring r2"></div><div class="dot"></div><div class="line h"></div><div class="line v"></div>
+  </div>
+</header>
+
+<section class="container block">
+  <h2 id="features-title">Features</h2>
+  <div class="grid f4">
+    <article><h3 id="f1h">Crosshair Profiles</h3><p id="f1p">Create profiles in Add/Edit and save only when ready. Delete with confirmation and keep full control.</p></article>
+    <article><h3 id="f2h">Fast Keybind Switching</h3><p id="f2p">Switch profiles instantly while keeping passive input handling for gameplay.</p></article>
+    <article><h3 id="f3h">Share Import/Export</h3><p id="f3p">Copy share links and import shared profile codes directly in the Share section.</p></article>
+    <article><h3 id="f4h">Flexible Home Layout</h3><p id="f4p">Toggle between vertical and horizontal home profile views with one click.</p></article>
+  </div>
+</section>
+
+<section class="container block">
+  <h2 id="quick-title">Quick Start</h2>
+  <div class="grid f4">
+    <article><h3 id="q1h">1. Build Profile</h3><p id="q1p">Create a profile in Add/Edit and save only when your setup is ready.</p></article>
+    <article><h3 id="q2h">2. Pick Home View</h3><p id="q2p">Switch Home between vertical and horizontal profile views anytime.</p></article>
+    <article><h3 id="q3h">3. Set Keybinds</h3><p id="q3p">Assign one or multiple hotkeys per profile and apply them instantly.</p></article>
+    <article><h3 id="q4h">4. Share + Settings</h3><p id="q4p">Use Share import/export and configure overlay behavior, theme, language, and startup.</p></article>
+  </div>
+</section>
+
+<section class="container block">
+  <h2 id="shots-title">Screenshots</h2>
+  <div class="grid s3">
+    <figure><img src="assets/overlay-preview.svg" alt="Overlay example" loading="lazy"><figcaption id="shot1">Overlay example</figcaption></figure>
+    <figure><img src="assets/profile-preview.svg" alt="Profile switching" loading="lazy"><figcaption id="shot2">Profile switching</figcaption></figure>
+    <figure><img src="assets/settings-preview.svg" alt="Settings UI" loading="lazy"><figcaption id="shot3">Settings UI</figcaption></figure>
+  </div>
+</section>
+
+<section class="container block">
+  <h2 id="perf-title">Performance (approx.)</h2>
+  <div class="grid f4">
+    <article><h3 id="perf1h">CPU Usage</h3><p id="perf1p">Typical idle load is around 0.1% to 0.5% on modern systems. Short spikes can happen when changing profiles.</p></article>
+    <article><h3 id="perf2h">RAM Usage</h3><p id="perf2p">Usually around 40 to 90 MB while running in the background with one active profile.</p></article>
+    <article><h3 id="perf3h">GPU Usage</h3><p id="perf3p">Normally near 0% to 1%, because the overlay draws only simple UI elements.</p></article>
+    <article><h3 id="perf4h">Game Impact</h3><p id="perf4p">In most cases FPS impact is hard to notice. Disable unused overlays to keep system overhead minimal.</p></article>
+  </div>
+  <p id="perf-note" class="meta">Values are approximate and can vary by hardware, game mode, resolution, and other background apps.</p>
+</section>
+
+<section class="container block faq">
+  <h2 id="faq-title">FAQ</h2>
+  <details><summary id="faq1q">Does it inject into games?</summary><p id="faq1a">No. CrosshairFlex is designed as an external overlay and does not inject into game processes.</p></details>
+  <details><summary id="faq2q">Can I share profiles?</summary><p id="faq2a">Yes. Use the Share page to copy profile links and import shared profile codes.</p></details>
+  <details><summary id="faq3q">Can I switch the profile view style?</summary><p id="faq3a">Yes. The Home page supports vertical and horizontal profile layouts with a quick toggle.</p></details>
+  <details><summary id="faq4q">Does onboarding open automatically?</summary><p id="faq4a">Yes. On first app launch the onboarding opens automatically once. You can reopen it later from Settings.</p></details>
+  <details><summary id="faq5q">Can this be bannable in some games?</summary><p id="faq5a">Yes, in some games this can potentially be bannable depending on anti-cheat rules. Use at your own risk.</p></details>
+  <details><summary id="faq6q">How can I keep anti-cheat risk as low as possible?</summary><p id="faq6a">Use it only where overlays are allowed, avoid ranked/competitive modes if rules are unclear, keep CrosshairFlex updated, and close other non-essential overlay tools. No external overlay can guarantee zero anti-cheat risk.</p></details>
+</section>
+
+<footer class="container foot">
+  <p>CrosshairFlex <span id="foot-version">1.0.0</span></p>
+  <p>&copy; <span id="year"></span> CrosshairFlex</p>
+</footer>
+<script src="script.js" defer></script>
+</body>
+</html>
