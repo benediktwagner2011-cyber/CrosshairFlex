@@ -1,0 +1,46 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="#0A1220"/>
+  <rect x="84" y="60" width="1032" height="580" rx="28" fill="#101A2B" stroke="#25384F"/>
+  <text x="122" y="120" fill="#E6EDF7" font-family="Segoe UI" font-size="32" font-weight="700">Profile + Share + Settings</text>
+
+  <rect x="122" y="152" width="470" height="458" rx="16" fill="#0F1A2C" stroke="#2D3F5A"/>
+  <text x="150" y="192" fill="#E6EDF7" font-family="Segoe UI" font-size="24" font-weight="700">General</text>
+
+  <text x="150" y="232" fill="#9FB2CC" font-family="Segoe UI" font-size="18">Language</text>
+  <rect x="150" y="246" width="220" height="42" rx="9" fill="#FFFFFF" stroke="#C8D8EC"/>
+  <text x="172" y="273" fill="#000000" font-family="Segoe UI" font-size="18">Deutsch</text>
+
+  <rect x="150" y="310" width="20" height="20" rx="4" fill="#25C9B0"/>
+  <text x="182" y="326" fill="#E6EDF7" font-family="Segoe UI" font-size="17">Light Mode</text>
+  <rect x="150" y="344" width="20" height="20" rx="4" fill="#25C9B0"/>
+  <text x="182" y="360" fill="#E6EDF7" font-family="Segoe UI" font-size="17">Start with Windows</text>
+
+  <text x="150" y="404" fill="#E6EDF7" font-family="Segoe UI" font-size="24" font-weight="700">Overlay Behavior</text>
+  <rect x="150" y="420" width="20" height="20" rx="4" fill="#25C9B0"/>
+  <text x="182" y="436" fill="#E6EDF7" font-family="Segoe UI" font-size="17">Temporary on Right Mouse</text>
+  <rect x="150" y="454" width="20" height="20" rx="4" fill="#25C9B0"/>
+  <text x="182" y="470" fill="#E6EDF7" font-family="Segoe UI" font-size="17">Temporary on Left Mouse</text>
+  <rect x="150" y="488" width="20" height="20" rx="4" fill="#1A2740" stroke="#3C5C86"/>
+  <text x="182" y="504" fill="#E6EDF7" font-family="Segoe UI" font-size="17">Safe Mode</text>
+
+  <rect x="150" y="536" width="136" height="40" rx="10" fill="#25C9B0"/>
+  <text x="170" y="562" fill="#05231E" font-family="Segoe UI" font-size="18" font-weight="700">Save Settings</text>
+  <rect x="296" y="536" width="130" height="40" rx="10" fill="#1A2740" stroke="#3C5C86"/>
+  <text x="314" y="562" fill="#E6EDF7" font-family="Segoe UI" font-size="18">Onboarding</text>
+
+  <rect x="620" y="152" width="458" height="458" rx="16" fill="#0F1A2C" stroke="#2D3F5A"/>
+  <text x="648" y="192" fill="#E6EDF7" font-family="Segoe UI" font-size="24" font-weight="700">Share</text>
+  <text x="648" y="226" fill="#9FB2CC" font-family="Segoe UI" font-size="18">Import profile code</text>
+  <rect x="648" y="240" width="392" height="42" rx="9" fill="#13233A" stroke="#35557E"/>
+  <text x="668" y="267" fill="#E6EDF7" font-family="Segoe UI" font-size="16">crosshairflex://profile/...</text>
+  <rect x="648" y="292" width="140" height="40" rx="10" fill="#1A2740" stroke="#3C5C86"/>
+  <text x="674" y="318" fill="#E6EDF7" font-family="Segoe UI" font-size="18">Import</text>
+
+  <text x="648" y="372" fill="#9FB2CC" font-family="Segoe UI" font-size="18">Export selected profile</text>
+  <rect x="648" y="386" width="220" height="42" rx="9" fill="#13233A" stroke="#35557E"/>
+  <text x="668" y="413" fill="#E6EDF7" font-family="Segoe UI" font-size="16">Selected: Pump CQB</text>
+  <rect x="878" y="386" width="162" height="42" rx="10" fill="#25C9B0"/>
+  <text x="904" y="413" fill="#05231E" font-family="Segoe UI" font-size="18" font-weight="700">Copy Link</text>
+
+  <text x="648" y="480" fill="#9FB2CC" font-family="Segoe UI" font-size="18">Status: Hotkeys active, profile synced.</text>
+</svg>
