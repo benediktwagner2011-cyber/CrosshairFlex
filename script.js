@@ -1,6 +1,6 @@
 (() => {
   const version = "1.0.0";
-  const size = "9.6 MB";
+  const size = "46.5 MB";
   const year = new Date().getFullYear();
   const path = window.location.pathname.toLowerCase();
   const page = path.endsWith("download.html") ? "download" : "index";
@@ -75,13 +75,13 @@
       de: {
         "dl-title": "CrosshairFlex installieren",
         "dl-sub": "Folge diesen Schritten, um die neueste Version unter Windows sicher herunterzuladen und zu installieren.",
-        d1h: "1. Installer herunterladen",
-        d1p: "Klicke auf den Button unten, um <code>CrosshairFlex_Setup.exe</code> herunterzuladen.",
-        d1btn: "Installer herunterladen",
-        d2h: "2. Wenn der Browser warnt",
-        d2p: "In Edge/Chrome im Download-Menü bei der Datei auf <strong>Behalten</strong> und dann <strong>Trotzdem behalten</strong> klicken.",
+        d1h: "1. ZIP herunterladen",
+        d1p: "Klicke auf den Button unten, um <code>CrosshairFlex.zip</code> herunterzuladen. Wenn der Browser warnt, wähle <strong>Behalten</strong> / <strong>Trotzdem behalten</strong>.",
+        d1btn: "ZIP herunterladen",
+        d2h: "2. ZIP entpacken",
+        d2p: "Rechtsklick auf <code>CrosshairFlex.zip</code> &rarr; <strong>Alle extrahieren...</strong> und einen Ordner auswählen.",
         d3h: "3. Setup starten",
-        d3p: "Öffne <code>CrosshairFlex_Setup.exe</code>, bestätige UAC und schließe die Installation ab.",
+        d3p: "Öffne den entpackten Ordner und starte <code>CrosshairFlex_Setup.exe</code>, bestätige UAC und schließe die Installation ab.",
         d4h: "4. Erster Start",
         d4p: "Beim ersten Start öffnet sich das Onboarding-Tutorial automatisch einmal mit allen Schritten.",
         "smart-title": "SmartScreen-Hinweis",

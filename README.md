@@ -28,7 +28,7 @@ CrosshairFlex/
 |  |- index.html
 |  |- styles.css
 |  |- script.js
-|  |- CrosshairFlex_Setup.exe
+|  |- CrosshairFlex.zip
 |  |- assets/
 |     |- logo.svg
 |     |- overlay-preview.svg
@@ -119,6 +119,6 @@ The landing site is now framework-free:
 - `web/assets/*`
 
 Download CTA links directly to:
-- `web/CrosshairFlex_Setup.exe`
+- `web/CrosshairFlex.zip` (contains `CrosshairFlex_Setup.exe`)
 
 Deploy `web/` as static files on any host (Cloudflare Pages static, GitHub Pages, Netlify static, S3, etc.).
